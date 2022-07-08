@@ -23,3 +23,27 @@ $(window).on('load resize', function () {
 		});
 	}
 });
+
+// add shadowing on block via adding a class if it need
+$(window).on('load resize', function () {
+	compareHeight();
+});
+
+$(".video-list .accordion-header").on('click', function (e) {
+	setTimeout(function () {
+		compareHeight();
+	}, 300); // animation time
+});
+
+function compareHeight() {
+	let totalHeight = 0;
+	$('.video-list .accordion-item').each(function (i, e) {
+		totalHeight += $(e).height() + 10; // number = margin
+	});
+
+	if (totalHeight > $(".bottom-bg").height()) {
+		$(".bottom-bg").addClass('needed')
+	} else {
+		$(".bottom-bg").removeClass('needed')
+	}
+}
